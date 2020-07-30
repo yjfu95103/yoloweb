@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!--  -->
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!--this doesn't seem to help-->
+<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+<!--  -->
+<!-- <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/d3-3d/build/d3-3d.min.js"></script> -->
+<script src="d3.v4.min.js"></script>
+<script src="d3-3d.min.js"></script>
+<!-- <script src="d3-3d.min-2.js"></script> -->
+<style type="text/css">
+    button select #strike {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    .cube:hover {
+        fill: #c4830c;
+    }
+
+    .line:hover {
+        stroke: #c4830c;
+
+    }
+
+    /* .tableRect:hover{
+        fill: #c4830c;
+        
+    } */
+</style>
+
+<body>
+    <!-- <button id="button">reset</button>
+    <select id='strike'>
+        <option value="s1">Strike 1</option>
+        <option value="s2">Strike 2</option>
+    </select> -->
+    <!-- <select>
+        <option value="o1">Option 1</option>
+        <option value="o2">Option 2</option>
+        <option value="o3">Option 3</option>
+        <option value="o4">Whatever</option>
+    </select> -->
+    <svg id="svgCube" width="6000" height="1000"></svg>
+
+
+    <script src="./cube_m3.js"></script>
+</body>
