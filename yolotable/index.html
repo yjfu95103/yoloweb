@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>YOLO Demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="lib/bootstrap.min.css"/>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/d3.js"></script>
+    <!-- <script type="text/javascript" src="lib/d3.min.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="lib/main2.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../css/landing-page.css" /> -->
+    <!-- <script type="text/javascript" src="darknet19.js"></script> -->
+   </head>
+  <body>
+	   
+      <div>
+         <div class="column2" id="net-group" style="height: 100%;">
+               <h1 id="net-title">YOLO v2 Net</h1>
+         </div>
+      </div>
+
+      <div class="column3" id="col2" style="height: 100%;">
+         <div class="row">
+             <div class="darknetSvg" id="darknet"></div> 
+         </div>
+     </div>
+
+      <div id="qtip-0" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+        <div class="qtip-content" id="qtip-0-content" >
+          <div class="node-label">
+              data · Data<br/>
+              transform param<br/>
+              crop size: 416<br/>
+              mirror: true<br/>
+              data param<br/>
+              source: PASCAL VOC 2007 train + 2012 train &amp; test<br/>
+              batch size: 32<br/>
+              blob shapes<br/>
+              data: [ 1, 3, 416, 416 ]<br/>
+              label: [ 1 ]<br/>
+              activation: leakyrelu
+          </div>
+        </div>
+      </div>
+      <div id="qtip-1" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-1-content" >
+    <div class="node-label">
+      輸入圖片大小: 416x416<br/>
+      輸入圖片數量: 3<br/>
+      模型: Convolution<br/>
+      層數: 0<br/>
+      輸出數量: 32<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 416x416
+    </div>
+  </div>
+</div>
+      <div id="qtip-2" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-2-content" >
+    <div class="node-label">
+      輸入圖片大小: 416x416<br/>
+      輸入圖片數量: 32<br/>
+      模型: MaxPool<br/>
+      層數: 1<br/>
+      輸出數量: 32<br/>
+      每次移動: 2<br/>
+      權重大小: 2x2<br/>
+      輸出圖片大小: 208x208
+    </div>
+  </div>
+</div>
+      <div id="qtip-3" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-3-content" >
+    <div class="node-label">
+      輸入圖片大小: 208x208<br/>
+      輸入圖片數量: 32<br/>
+      模型: Convolution<br/>
+      層數: 2<br/>
+      輸出數量: 64<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 208x208
+    </div>
+  </div>
+</div>
+      <div id="qtip-4" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-4-content" >
+    <div class="node-label">
+      輸入圖片大小: 208x208<br/>
+      輸入圖片數量: 64<br/>
+      模型: MaxPool<br/>
+      層數: 3<br/>
+      輸出數量: 64<br/>
+      每次移動: 2<br/>
+      權重大小: 2x2<br/>
+      輸出圖片大小: 104x104
+    </div>
+  </div>
+</div>
+      <div id="qtip-5" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-5-content" >
+    <div class="node-label">
+      輸入圖片大小: 104x104<br/>
+      輸入圖片數量: 64<br/>
+      模型: Convolution<br/>
+      層數: 4<br/>
+      輸出數量: 128<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 104x104
+    </div>
+  </div>
+</div>
+      <div id="qtip-6" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-6-content" >
+    <div class="node-label">
+      輸入圖片大小: 104x104<br/>
+      輸入圖片數量: 64<br/>
+      模型: Convolution<br/>
+      層數: 5<br/>
+      輸出數量: 64<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 104x104
+    </div>
+  </div>
+</div>
+      <div id="qtip-7" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-7-content" >
+    <div class="node-label">
+      輸入圖片大小: 104x104<br/>
+      輸入圖片數量: 64<br/>
+      模型: Convolution<br/>
+      層數: 6<br/>
+      輸出數量: 128<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 104x104
+    </div>
+  </div>
+</div>
+<div id="qtip-8" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-8-content" >
+    <div class="node-label">
+      輸入圖片大小: 104x104<br/>
+      輸入圖片數量: 128<br/>
+      模型: MaxPool<br/>
+      層數: 7<br/>
+      輸出數量: 128<br/>
+      每次移動: 2<br/>
+      權重大小: 2x2<br/>
+      輸出圖片大小: 52x52
+    </div>
+  </div>
+</div>
+<div id="qtip-9" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-9-content" >
+    <div class="node-label">
+      輸入圖片大小: 52x52<br/>
+      輸入圖片數量: 128<br/>
+      模型: Convolution<br/>
+      層數: 8<br/>
+      輸出數量: 256<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 52x52
+    </div>
+  </div>
+</div>
+      <div id="qtip-10" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-10-content" >
+    <div class="node-label">
+      輸入圖片大小: 52x52<br/>
+      輸入圖片數量: 256<br/>
+      模型: Convolution<br/>
+      層數: 9<br/>
+      輸出數量: 128<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 52x52
+    </div>
+  </div>
+</div>
+     <div id="qtip-11" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-11-content" >
+    <div class="node-label">
+      輸入圖片大小: 52x52<br/>
+      輸入圖片數量: 128<br/>
+      模型: Convolution<br/>
+      層數: 10<br/>
+      輸出數量: 256<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 52x52
+    </div>
+  </div>
+</div>
+<div id="qtip-12" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-12-content" >
+    <div class="node-label">
+      輸入圖片大小: 52x52<br/>
+      輸入圖片數量: 256<br/>
+      模型: MaxPool<br/>
+      層數: 11<br/>
+      輸出數量: 256<br/>
+      每次移動: 2<br/>
+      權重大小: 2x2<br/>
+      輸出圖片大小: 26x26
+    </div>
+  </div>
+</div>
+ <div id="qtip-13" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-13-content" >
+    <div class="node-label">
+      輸入圖片大小: 26x26<br/>
+      輸入圖片數量: 256<br/>
+      模型: Convolution<br/>
+      層數: 12<br/>
+      輸出數量: 512<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 26x26
+    </div>
+  </div>
+</div>
+<div id="qtip-14" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-14-content" >
+    <div class="node-label">
+      輸入圖片大小: 26x26<br/>
+      輸入圖片數量: 512<br/>
+      模型: Convolution<br/>
+      層數: 13<br/>
+      輸出數量: 256<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 26x26
+    </div>
+  </div>
+</div>
+<div id="qtip-15" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-15-content" >
+    <div class="node-label">
+      輸入圖片大小: 26x26<br/>
+      輸入圖片數量: 256<br/>
+      模型: Convolution<br/>
+      層數: 14<br/>
+      輸出數量: 512<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 26x26
+    </div>
+  </div>
+</div>
+<div id="qtip-16" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-16-content" >
+    <div class="node-label">
+      輸入圖片大小: 26x26<br/>
+      輸入圖片數量: 512<br/>
+      模型: Convolution<br/>
+      層數: 15<br/>
+      輸出數量: 256<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 26x26
+    </div>
+  </div>
+</div>
+<div id="qtip-17" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-17-content" >
+    <div class="node-label">
+      輸入圖片大小: 26x26<br/>
+      輸入圖片數量: 256<br/>
+      模型: Convolution<br/>
+      層數: 16<br/>
+      輸出數量: 512<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 26x26
+    </div>
+  </div>
+</div>
+<div id="qtip-18" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-18-content" >
+    <div class="node-label">
+      輸入圖片大小: 26x26<br/>
+      輸入圖片數量: 512<br/>
+      模型: MaxPool<br/>
+      層數: 17<br/>
+      輸出數量: 512<br/>
+      每次移動: 2<br/>
+      權重大小: 2x2<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-19" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-19-content" >
+    <div class="node-label">
+      輸入圖片大小: 13x13<br/>
+      輸入圖片數量: 512<br/>
+      模型: Convolution<br/>
+      層數: 18<br/>
+      輸出數量: 1024<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-20" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-20-content" >
+    <div class="node-label">
+      輸入圖片大小: 13x13<br/>
+      輸入圖片數量: 1024<br/>
+      模型: Convolution<br/>
+      層數: 19<br/>
+      輸出數量: 512<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-21" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-21-content" >
+    <div class="node-label">
+      輸入圖片大小: 13x13<br/>
+      輸入圖片數量: 512<br/>
+      模型: Convolution<br/>
+      層數: 20<br/>
+      輸出數量: 1024<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-22" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-22-content" >
+    <div class="node-label">
+      輸入圖片大小: 13x13<br/>
+      輸入圖片數量: 1024<br/>
+      模型: Convolution<br/>
+      層數: 21<br/>
+      輸出數量: 512<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-23" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-23-content" >
+    <div class="node-label">
+      輸入圖片大小: 13x13<br/>
+      輸入圖片數量: 512<br/>
+      模型: Convolution<br/>
+      層數: 22<br/>
+      輸出數量: 1024<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-24" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-24-content" >
+    <div class="node-label">
+      輸入圖片大小: 13x13<br/>
+      輸入圖片數量: 1024<br/>
+      模型: Convolution<br/>
+      層數: 23<br/>
+      輸出數量: 1024<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-25" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-25-content" >
+    <div class="node-label">
+      輸入圖片大小: 13x13<br/>
+      輸入圖片數量: 1024<br/>
+      模型: Convolution<br/>
+      層數: 24<br/>
+      輸出數量: 1024<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-route" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+   <div class="qtip-content" id="qtip-route-content" >
+     <div class="node-label">
+        層數: 25<br/>
+        讀取第16層輸出結果
+     </div>
+   </div>
+ </div>
+<div id="qtip-26" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-26-content" >
+    <div class="node-label">
+      輸入圖片大小: 26x26<br/>
+      輸入圖片數量: 512<br/>
+      模型: Convolution<br/>
+      層數: 26<br/>
+      輸出數量: 64<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 26x26
+    </div>
+  </div>
+</div>
+<div id="qtip-reorg" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+      <div class="qtip-content" id="qtip-27-content" >
+        <div class="node-label">
+            輸入圖片大小: 26x26<br/>
+            輸入圖片數量: 64<br/>
+            模型: Reorganization<br/>
+            層數: 27<br/>
+            輸出數量: 256<br/>
+            輸出圖片大小: 13x13
+        </div>
+      </div>
+    </div>
+<div id="qtip-concat" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-27-content" >
+    <div class="node-label">
+      模型: concat 合併<br/>
+      合併層數: 27 24<br/>
+      層數: 28<br/>
+    </div>
+  </div>
+</div>
+<div id="qtip-28" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+   <div class="qtip-content" id="qtip-28-content" >
+      <div class="node-label">
+         輸入圖片大小: 13x13<br/>
+         輸入圖片數量: 1280<br/>
+         模型: Convolution<br/>
+         層數: 29<br/>
+         輸出數量: 1024<br/>
+         每次移動: 1<br/>
+         權重大小: 3x3<br/>
+         輸出圖片大小: 13x13
+      </div>
+   </div>
+</div>
+<div id="qtip-29" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-29-content" >
+    <div class="node-label">
+      輸入圖片大小: 13x13<br/>
+      輸入圖片數量: 1024<br/>
+      模型: Convolution<br/>
+      層數: 30<br/>
+      輸出數量: 1024<br/>
+      每次移動: 1<br/>
+      權重大小: 3x3<br/>
+      輸出圖片大小: 13x13
+    </div>
+  </div>
+</div>
+<div id="qtip-30" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-30-content" >
+    <div class="node-label">
+      Region ·Region
+    </div>
+  </div>
+</div>
+<div id="qtip-31" class="qtip qtip-default  qtip-pos-lc" style="z-index: 15016;">
+  <div class="qtip-content" id="qtip-31-content" >
+    <div class="node-label">
+      偵測結果
+    </div>
+  </div>
+</div>
+
+<div id="imgscale" style="z-index: 15016;">
+      
+</div>
+
+         <div class="column" id="col2" style="height:100%">
+            <div class="row">
+               <div class="col-md-12">
+                  <table id="yolo_table" width="100%">
+                  <tr>
+                     <th>Layer</th>
+                     <th>Type</th>
+                     <th>Filters</th>
+                     <th>Size/Stride</th>
+                     <th>Output size</th>
+                  </tr>
+                  <tr>
+                     <td>0</td>
+                     <td>Convolutional</td>
+                     <td>32</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">416x416</td>
+                  </tr>
+                  <tr>
+                     <td>1</td>
+                     <td>Maxpool</td>
+                     <td></td>
+                     <td>2x2/2</td>
+                     <td>208x208</td>
+                  </tr>
+                  <tr>
+                     <td>2</td>
+                     <td>Convolutional</td>
+                     <td>64</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">208x208</td>
+                  </tr>
+                  <tr>
+                     <td>3</td>
+                     <td>Maxpool</td>
+                     <td></td>
+                     <td>2x2/2</td>
+                     <td>104x104</td>
+                  </tr>
+                  <tr>
+                     <td>4</td>
+                     <td>Convolutional</td>
+                     <td>128</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">104x104</td>
+                  </tr>
+                  <tr>
+                     <td>5</td>
+                     <td>Convolutional</td>
+                     <td>64</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">104x104</td>
+                  </tr>
+                  <tr>
+                     <td>6</td>
+                     <td>Convolutional</td>
+                     <td>128</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">104x104</td>
+                  </tr>
+                  <tr>
+                     <td>7</td>
+                     <td>Maxpool</td>
+                     <td></td>
+                     <td>2x2/2</td>
+                     <td>52x52</td>
+                  </tr>
+                  <tr>
+                     <td>8</td>
+                     <td>Convolutional</td>
+                     <td>256</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">52x52</td>
+                  </tr>
+                  <tr>
+                     <td>9</td>
+                     <td>Convolutional</td>
+                     <td>128</td>
+                     <td class="hover green">1x1/1</td>
+                     <td class="hover blue">52x52</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>Convolutional</td>
+                     <td>256</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">52x52</td>
+                  </tr>
+                  <tr>
+                     <td>11</td>
+                     <td>Maxpool</td>
+                     <td></td>
+                     <td>2x2/2</td>
+                     <td>26x26</td>
+                  </tr>
+                  <tr>
+                     <td>12</td>
+                     <td>Convolutional</td>
+                     <td>512</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">26x26</td>
+                  </tr>
+                  <tr>
+                     <td>13</td>
+                     <td>Convolutional</td>
+                     <td>256</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">26x26</td>
+                  </tr>
+                  <tr>
+                     <td>14</td>
+                     <td>Convolutional</td>
+                     <td>512</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">26x26</td>
+                  </tr>
+                  <tr>
+                     <td>15</td>
+                     <td>Convolutional</td>
+                     <td>256</td>
+                     <td class="hover green">1x1/1</td>
+                     <td class="hover blue">26x26</td>
+                  </tr>
+                  <tr>
+                     <td>16</td>
+                     <td>Convolutional</td>
+                     <td>512</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">26x26</td>
+                  </tr>
+                  <tr>
+                     <td>17</td>
+                     <td>Maxpool</td>
+                     <td></td>
+                     <td>2x2/2</td>
+                     <td>13x13</td>
+                  </tr>
+                  <tr>
+                     <td>18</td>
+                     <td>Convolutional</td>
+                     <td>1024</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>19</td>
+                     <td>Convolutional</td>
+                     <td>512</td>
+                     <td class="hover green">1x1/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>20</td>
+                     <td>Convolutional</td>
+                     <td>1024</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>21</td>
+                     <td>Convolutional</td>
+                     <td>512</td>
+                     <td class="hover green">1x1/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>22</td>
+                     <td>Convolutional</td>
+                     <td>1024</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>23</td>
+                     <td>Convolutional</td>
+                     <td>1024</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>24</td>
+                     <td>Convolutional</td>
+                     <td>1024</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>25</td>
+                     <td>Route</td>
+                     <td>16</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                        <td>26</td>
+                        <td>Convolutional</td>
+                        <td>64</td>
+                        <td>1x1/1</td>
+                        <td>26x26</td>
+                     </tr>
+                  <tr>
+                     <td>27</td>
+                     <td>Reorg</td>
+                     <td></td>
+                     <td>/2</td>
+                     <td>13x13</td>
+                  </tr>
+                  <tr>
+                     <td>28</td>
+                     <td>Route</td>
+                     <td>27 24</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>29</td>
+                     <td>Convolutional</td>
+                     <td>1024</td>
+                     <td class="hover green">3x3/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>30</td>
+                     <td>Convolutional</td>
+                     <td>425</td>
+                     <td class="hover green">1x1/1</td>
+                     <td class="hover blue">13x13</td>
+                  </tr>
+                  <tr>
+                     <td>31</td>
+                     <td>Detection</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  </table>
+
+               <!-- <img src="data/layer.png"  class="rounded img-fluid"> -->
+               </div>
+
+         
+            </div>
+         </div>
+
+         <div class="column" id="placehere2" style="height: 100%;">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="center">原圖</h3>
+                    <img src="data/input.jpg" class="rounded img-fluid" />
+                </div>
+                <div class="col-md-6">
+                    <h3 class="center">結果</h3>
+                    <img src="data/predictions.jpg" class="rounded img-fluid" />
+                </div>
+            </div>
+
+            <div id="placehere">
+                <h3 class="center">第0層卷積結果</h3>
+            </div>
+        </div>
+
+
+    
+  </body>
+  <!-- <script type="text/javascript" src="lib/main2.js"></script> -->
+  <script type="text/javascript" src="lib/conv.js"></script>
+  <script type="text/javascript">
+    $("#svgprocess").width= $("net-group").width();
+  </script>
+</html>
