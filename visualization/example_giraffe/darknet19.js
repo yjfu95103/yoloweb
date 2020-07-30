@@ -355,12 +355,12 @@ window.onload = function () {
         $("#imgscale").css("display", "block").css("position", "absolute").css("top", (event.offsetY + 10) + "px").css("left", (event.offsetX - 10) + "px");
         // $("#imgscale").append("<img src='" + 'data/yolo_v2_generated/' + this.id + '.jpg' + "'style='width:200px'>");
         // $("#imgscale").append("<p>" + this.id + '.jpg' + "</p>");
-        $("#imgscale").append("<img src='" + 'data/generated/' + 'input' + layer[1] + '.jpg' + "'style='width:200px'>");
+        $("#imgscale").append("<img src='" + '../example_cat/data/generated/' + 'input' + layer[1] + '.jpg' + "'style='width:200px'>");
         // $("#imgscale").append("<p>" + 'input' + layer[1] + '.jpg' + "</p>");
         $("#imgscale").append("<p>" + 'input' + "</p>");
 
         $("#imgscale").css("display", "block").css("position", "absolute").css("top", (event.offsetY + 10) + "px").css("left", (event.offsetX - 10) + "px");
-        $("#imgscale").append("<img src='" + 'data/generated/' + 'output' + layer[1] + '.jpg' + "'style='width:200px'>");
+        $("#imgscale").append("<img src='" + '../example_cat/data/generated/' + 'output' + layer[1] + '.jpg' + "'style='width:200px'>");
         // $("#imgscale").append("<p>" + 'output' + layer[1] + '.jpg' + "</p>");
         $("#imgscale").append("<p>" + 'output' + "</p>");
       }, function () {
