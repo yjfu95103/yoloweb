@@ -40,7 +40,19 @@
             <a href="#feature_map">特徵圖產生</a>
           </li>        
           <li>
+            <a href="https://github.com/Kagu82104/thesissystem">特徵圖github</a>
+          </li> 
+          <li>
             <a href="#weight_map">權重圖產生</a>
+          </li> 
+          <li>
+            <a href="https://github.com/jysh1214/yolov2-visualization">權重圖github</a>
+          </li> 
+          <li>
+            <a href="#anchor_box">錨框產生</a>
+          </li>
+          <li>
+            <a href="https://github.com/yjfu95103/anchorbox">錨框github</a>
           </li> 
 
         </ul>
@@ -203,6 +215,63 @@
 
       <h5>7.打開 img 資料夾，查閱權重圖</h5>
       <img src="./img/install/check_weight.PNG" height="100%"><br><br>
+
+    </div> <!-- /.container -->
+  </div> <!-- /.content-section-a -->
+
+  <a name="anchor_box"></a>
+  <div class="content-section-a">
+    <div class="container">
+      <hr class="section-heading-spacer">
+      <div class="clearfix"></div>
+      <h4 style="color:rgb(25, 113, 172);">錨框產生</h4>
+      <h5>1.至https://github.com/yjfu95103/anchorbox下載</h5>
+
+      <h5>2.解壓縮</h5>
+
+      <h5>3.將yolov2.weights放進此目錄</h5>
+
+      <h5>4.開啟終端機，移至當前位置，再執行Make指令</h5>
+      <div class="window">
+        <div class="terminal">          
+          <p class="command">(base) C:\Users\ming1>cd anchorbox</p>
+          <p class="log">$ (base) C:\Users\ming1\anchorbox></p>
+        </div>
+      </div><br>
+
+      <h5>5.執行指令 python3 darknet.py cfg/coco.data cfg/yolo.cfg yolov2.weights ./data/dog.jpg > anchor.txt</h5>
+      <h5>獲取anchor box資料</h5>
+      <div class="window">
+        <div class="terminal">
+          (base) C:\Users\ming1\anchorbox>
+          <p class="command">python3 darknet.py cfg/coco.data cfg/yolo.cfg yolov2.weights ./data/dog.jpg > anchor.txt</p>
+          <p class="log">$ (base) C:\Users\ming1\anchorbox></p>
+        </div>
+      </div><br>
+
+      <h5>6.執行指令 ./darknet detect cfg/yolo.cfg yolov2.weights data/dog_temp.jpg -thresh 0.0</h5>
+      <h5>獲取thresh 0.0的辨識結果</h5>
+      <div class="window">
+        <div class="terminal">
+          (base) C:\Users\ming1\anchorbox>
+          <p class="command">./darknet detect cfg/yolo.cfg yolov2.weights data/dog_temp.jpg -thresh 0.0</p>
+          <p class="log">$ (base) C:\Users\ming1\anchorbox></p>
+        </div>
+      </div><br>
+
+      <h5>7.執行指令 ./darknet detect cfg/yolo.cfg yolov2.weights data/dog_temp.jpg -thresh 0.6</h5>
+      <h5>獲取thresh 0.6的辨識結果</h5>
+      <div class="window">
+        <div class="terminal">
+          (base) C:\Users\ming1\anchorbox>
+          <p class="command">./darknet detect cfg/yolo.cfg yolov2.weights data/dog_temp.jpg -thresh 0.6</p>
+          <p class="log">$ (base) C:\Users\ming1\anchorbox></p>
+        </div>
+      </div><br>
+
+      <h5>8.將anchor.txt的資料複製貼至anchorbox/cube_m3.js中，alldata裡面</h5>
+      <h5>同時，將兩張predictions.jpg及input.jpg複製到anchorbox資料夾中</h5>
+
 
     </div> <!-- /.container -->
   </div> <!-- /.content-section-a -->
