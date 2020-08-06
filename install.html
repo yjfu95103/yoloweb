@@ -239,20 +239,34 @@
       <h5>1.至<a href="https://github.com/yjfu95103/yolov2framework">
         https://github.com/yjfu95103/yolov2framework</a>下載</h5>
 
-      <h5>2.解壓縮</h5>
-
-      <h5>3.進入visualization/convolution visualizer資料夾</h5>   
-      
-      <h5>4.將yolov2.weights放進此目錄</h5>  
-      
-      <h5>5.執行指令</h5> 
+      <h5>2.開啟 Anaconda Prompt 後，使用conda建立虛擬環境來作使用</h5>
       <div class="window">
         <div class="terminal">
-          (pytorch) C:\Users\ming1\Downloads\yolov2framework\visualization/convolution visualizer><p class="command">python detect.py ./cfg/yolo.cfg ./yolov2.weights ./dog.jpg</p>
+          <p class="command">(base) C:\Users\ming1>conda activate pytorch</p>
+          <p class="log">$ (pytorch) C:\Users\ming1></p>
+        </div>
+      </div><br>
+
+      <h5>3.解壓縮</h5>
+
+      <h5>4.進入visualization/convolution visualizer資料夾</h5>
+      <div class="window">
+        <div class="terminal">
+          <p class="command">(pytorch) C:\Users\ming1>cd "C:\Users\ming1\Downloads\yolov2framework\visualization/convolution visualizer"</p>
+          <p class="log">$ (pytorch) C:\Users\ming1\Downloads\yolov2framework\visualization/convolution visualizer></p>
+        </div>
+      </div><br>   
+      
+      <h5>5.將yolov2.weights放進此目錄</h5>  
+      
+      <h5>6.執行指令</h5> 
+      <div class="window">
+        <div class="terminal">
+          (pytorch) C:\Users\ming1\Downloads\yolov2framework\visualization\convolution visualizer><p class="command">python detect.py ./cfg/yolo.cfg ./yolov2.weights ./dog.jpg</p>
         </div>
       </div><br> 
 
-      <h5>6.開啟index.html</h5> 
+      <h5>7.開啟index.html</h5> 
 
 
     </div> <!-- /.container -->
@@ -279,6 +293,8 @@
       <hr class="section-heading-spacer">
       <div class="clearfix"></div>
       <h4 style="color:rgb(25, 113, 172);">錨框產生</h4>
+      <h5 style="color:rgb(235, 44, 37);">使用到libdarknet.so檔案，必須於Linux
+      或MacOs系統下操作</h5>
       <h5>1.至<a href="https://github.com/yjfu95103/anchorbox">
         https://github.com/yjfu95103/anchorbox</a>下載</h5>
 
