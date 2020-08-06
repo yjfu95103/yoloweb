@@ -334,17 +334,46 @@ window.onload = function f() {
     //     .attr("style", "position:absolute; left:10px; top:40px;")
     //     .text(selectValue + "," + convValue + ' is the last selected option.');
     // };
+    svg.append('rect')
+        .attr('id', 'Boxtip')
+        .attr('stroke', '#333333')
+        .attr('fill', '#dddddd')
+        .attr('stroke-width', '1')
+        .attr('x', 25)
+        .attr('y', 165)
+        .attr('width', 1250)
+        .attr('height', 110);
+    d3.select('body')
+        .append('p')
+        .attr('id', 'Text')
+        .attr("style", "position:absolute; left:90px; top:165px;")
+        .text( '步驟:');
+    d3.select('body')
+        .append('p')
+        .attr('id', 'Text')
+        .attr("style", "position:absolute; left:100px; top:190px;")
+        .text( '1.點擊\"格點\"點擊區的格點兩次，查看下方出現的五個Anchor Box');
+    d3.select('body')
+        .append('p')
+        .attr('id', 'Text')
+        .attr("style", "position:absolute; left:100px; top:215px;")
+        .text( '2.點擊\"動畫\"點擊區的格點一次，查看動畫');
+    d3.select('body')
+        .append('p')
+        .attr('id', 'Text')
+        .attr("style", "position:absolute; left:100px; top:240px;")
+        .text( '3.結束後點擊重設鍵');
 
     d3.select('body')
         .append('p')
         .attr('id', 'Text')
         .attr("style", "position:absolute; left:150px; top:270px;")
-        .text( '再點擊一下以下畫面');
+        .text( '動畫點擊區');
     d3.select('body')
         .append('p')
         .attr('id', 'Text')
-        .attr("style", "position:absolute; left:450px; top:270px;")
-        .text( '請先點及兩下方框');
+        .attr("style", "position:absolute; left:490px; top:270px;")
+        .text( '格點點擊區');
     d3.select('body')
         .append('p')
         .attr('id', 'Text')
@@ -358,8 +387,8 @@ window.onload = function f() {
     d3.select('body')
         .append('p')
         .attr('id', 'Text')
-        .attr("style", "position:absolute; left:1310px; top:270px;")
-        .text( '結束後請重設');
+        .attr("style", "position:absolute; left:1340px; top:270px;")
+        .text( '重設');
     
 
 
